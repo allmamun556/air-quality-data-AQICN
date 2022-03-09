@@ -1,0 +1,85 @@
+
+
+Step to install airflow on windows without Docker
+
+Step 1: Control Panel | Programs and Features | Turn Windows features on or off
+Enable : Windows Subsystem for Linux
+
+Step 2: Install Ubuntu from windows store and restart system
+
+Step 3: Install and update PIP
+sudo apt-get install software-properties-common
+sudo apt-add-repository universe
+sudo apt-get update
+sudo apt-get install python-pip
+
+Step 4: Install airflow 
+python3 -m pip install apache-airflow
+
+Step 5: Initialize DB('airflow initdb' is not working . so run the below command)
+airflow db init
+
+Step 6: Start airflow server.Run the below command. Here, airflow will start running at port 8080. You can change based on your choice as well.
+airflow webserver -p 8080
+
+Step 7: URL is ready at:(you can check typing this url on any web browser)
+http://localhost:8080/
+
+Step 8: Check the DAG folder:
+From "\\wsl$\Ubuntu-20.04\home\mamunds\airflow(for my case) or
+General: home\username\airflow " find out the "airflow.cfg" file. And then open it using any editor.
+  To open you can use nano editor
+     i)run nano airflow.cfg 
+     ii) ctl+s <--> to save on nano editor
+     iii)ctl+x <---> to exit from the nao editor
+     
+Check the dag folder paths.Make a dag folder exactly keeping same path like this.
+For me when I open I see the location like this:
+"dags_folder = /home/mamunds/airflow/dags" . this my dag folder path.
+So I have created a folder name as "dags" inside the "airflow" folder simple.
+Then if create any new dag file, I have put that file  inside the "dags" folder.
+
+Then Step 9: After each putting dag files inside the dags folder , we have to initilize the db again always. So, 
+run airflow initdb
+
+N.B: DAG--> Direct acyclic graph
+
+
+###### Note####
+1.Always after adding a new dag. We have to initialize the  'airflow db init'--> initialize db  again as it's not refressed automatically.
+2.Update pip 
+3. Write the bellow command for creating username and password:(if its asking for the password). Paste the below line in the linux command line.
+you can put your own username and password.That would be nice.
+
+
+    airflow users create --role Admin --username admin --email admin --firstname admin --lastname admin --password admin
+
+4.If you open the ubuntu operating system you will see the a folder name as 'home'.  :). First time it was hard for me to find out this folder.
+Note: just to remember for the future use.
+
+5. To open the ubuntu folder directory:
+     step i: windows+run
+     step ii: paste \\wsl$
+     step iii: press the enter button
+     Then you will see the ubuntu directory(cool)
+
+6. Just for simplicity: I have created the user on airflow using the above command(3:).So,
+    username: admin
+    password: admin
+    similarly all are like above command. :)
+
+7. My current ubuntu:
+   username:mamunds
+   pass:2****9
+
+8. My microsoft store credentianls:
+   email: allmamun556@gmail.com
+   pass: 2*****_M
+
+
+References:
+I have followed these links and then modified by my ownself for my cases
+https://www.youtube.com/watch?v=SYOUbiGtGiU&ab_channel=techsapphire
+https://coding-stream-of-consciousness.com/2018/11/06/apache-airflow-windows-10-install-ubuntu/
+https://stackoverflow.com/questions/37048856/how-to-install-airflow
+https://www.youtube.com/watch?v=IH1-0hwFZRQ

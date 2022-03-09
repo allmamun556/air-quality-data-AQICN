@@ -1,0 +1,3 @@
+#to see the linux file system 
+
+press: \\wsl$ on windows run
