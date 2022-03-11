@@ -1,31 +1,22 @@
 import requests
 import json
+import config
 
-def get_air_quality_data(city, accesstoken='7672327f1d6675ef5d2d554b63b6175afec9fe77'):
+def get_air_quality_data(city, accesstoken=config.access_token):
     # build request
-    url = 'http://api.waqi.info/feed/'+city+'/?token=' + accesstoken
+    url = config.base_url+city+'/?token=' + accesstoken
     # get data
     r = requests.get(url, auth=('user', 'pass'))
     # check status code and return data
     if r.status_code == 200:
         data = r.json()
         data=data['data']
-        with open('extract'+'/'+city+'.'+'json', 'w') as fp:
+        with open('extract'+'/'+city+'.'+'json', 'w') as fp: #to write data
          json.dump(data, fp)
 
-        #return json.dumps(data)
+       
+#get_air_quality_data(config.city_list)
 
 
-city_list=['berlin','newyork','seoul']
-#print(type(get_air_quality_data('berlin')))
-#print(json.dumps(get_air_quality_data('berlin')))
-#print(json.dumps(get_air_quality_data('newyork')))
-#print(json.dumps(get_air_quality_data('newyork')))
-#print(json.dumps(get_air_quality_data('seoul')))
 
-for i in city_list:
-    get_air_quality_data(i)
-
-
-#import json
 

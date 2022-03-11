@@ -4,11 +4,16 @@ from sqlalchemy import create_engine
 #from .transform import BaseTransformer
 import json
 import pandas as pd
+import glob
+import pprint as pp #Pretty printer
+import config
+
+
 
 class Db:
     def load_to_db(self,table_name, dataframe):
         #engine=create_engine(engine)
-        engine = create_engine('postgresql://postgres:Htmpzkvm7867@localhost/air_quality_data')
+        engine = create_engine(f'postgresql://{config.database_username}:{config.database_password}@localhost/{config.database_name}')
         dataframe.to_sql(table_name, engine, if_exists='replace',
                 index=False)
 
@@ -55,13 +60,17 @@ class Db:
 #with open('transform/berlin.json') as f:
      #data = json.load(f) 
 
-#print(data)     
 
-data=pd.read_json('transform/berlin.json')
-data_seoul=pd.read_json('transform/seoul.json')
-data_newyork=pd.read_json('transform/newyork.json')
+    
+
+
+
+data=pd.read_json('berlin.json')
+#data_seoul=pd.read_json('transform/seoul.json')
+#data_newyork=pd.read_json('transform/newyork.json')
+
 
 db_object=Db()
-#db_object.load_to_db('berlin',data)
-db_object.load_to_db('newyork',data_newyork)
-db_object.load_to_db('seoul',data_seoul)
+db_object.load_to_db('berlin',data)
+#db_object.load_to_db('newyork',data_newyork)
+#db_object.load_to_db('seoul',data_seoul)

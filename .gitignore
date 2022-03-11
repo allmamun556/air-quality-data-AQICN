@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# python file
+config.py
+
+#folder 
+extract
+transform
+
+#utils file
+berlin.json
