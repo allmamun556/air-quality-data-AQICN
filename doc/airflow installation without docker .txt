@@ -47,6 +47,8 @@ N.B: DAG--> Direct acyclic graph
 
 ###### Note####
 1.Always after adding a new dag. We have to initialize the  'airflow db init'--> initialize db  again as it's not refressed automatically.
+ N.B: Bydeafult airflow se the sqlite database. Thats why this is not refressed automatically. If we use postgre as our database  then
+ it can refress automatically. 
 2.Update pip 
 3. Write the bellow command for creating username and password:(if its asking for the password). Paste the below line in the linux command line.
 you can put your own username and password.That would be nice.
@@ -74,7 +76,7 @@ Note: just to remember for the future use.
 
 8. My microsoft store credentianls:
    email: allmamun556@gmail.com
-   pass: 2*****_M
+   pass: 2****9_M
 
 
 References:
